@@ -2,11 +2,12 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-unsetopt beep
+setopt appendhistory autocd nomatch
+unsetopt beep extendedglob notify
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/Users/martin.baillie/.zshrc'
+zstyle :compinstall filename "/Users/$USER/.zshrc"
 
 autoload -Uz compinit
 compinit
@@ -38,10 +39,6 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-# for adb
-export ANDROID_HOME=/Users/${USER}/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
-
 # aliases to enable easy showing and hiding of hidden files
 alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
@@ -55,7 +52,15 @@ PROMPT='%n@%m %~ $(git_super_status)${NEWLINE}%# '
 # TODO ls -AFl in a variable
 alias lsd='ls -AFl | grep "^d"; ls -AFl | grep "^-"; ls -AFl | grep "^l"'
 
-# set current directory to IM2X-SHELL
-alias cdi='cd ~/WebstormProjects/im2x-client/IM2X-Shell/'
+if [ $USER == "martin.baillie" ]; then
+  # for adb
+  export ANDROID_HOME=/Users/${USER}/Library/Android/sdk
+  export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
 
-alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs -nw"
+  # set current directory to IM2X-SHELL
+  alias cdi='cd ~/WebstormProjects/im2x-client/IM2X-Shell/'
+  
+  alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs -nw"
+elif [ $USER == "martin" ]; then
+
+fi
