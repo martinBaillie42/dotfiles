@@ -81,6 +81,9 @@ hi Error ctermfg=253
 
 hi Pmenu ctermfg=16 ctermbg=244
 hi PmenuSel ctermfg=253 ctermbg=238
+
+hi VertSplit ctermfg=235 ctermbg=235 
+
 " gitgutter update time 
 set updatetime=250
 
