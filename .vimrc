@@ -8,7 +8,8 @@ set laststatus=2
 set statusline=%l\:%c\ %L%=\ %M\ %F
 
 " statusline colours
-hi StatusLine ctermbg=244 ctermfg=16
+hi StatusLineNC ctermbg=244 ctermfg=235
+hi StatusLine ctermbg=253 ctermfg=235
 
 " Tabs are 4 spaces
 set tabstop=4 
@@ -103,8 +104,7 @@ let mapleader=" "
 set history=500
 
 " filetype detection and indentation
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -153,3 +153,8 @@ try
     set undofile
 catch
 endtry
+
+" Completion mode that is used for the character specified with 'wildchar'
+" As far as I can tell used for filename tab completion. May be used in other
+" places
+set wildmode=longest:full
