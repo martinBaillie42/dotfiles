@@ -2,20 +2,20 @@
 set nocompatible
 
 " Permanently show filename at bottom of display
-set laststatus=2
+" set laststatus=2
 
 " Configure statusline
-set statusline=%l\:%c\ %L%=\ %M\ %<%F
+" set statusline=%l\:%c\ %L%=\ %M\ %<%F
 
 " statusline colours
-hi StatusLineNC ctermbg=244 ctermfg=235
-hi StatusLine ctermbg=253 ctermfg=235
+" hi StatusLineNC ctermbg=244 ctermfg=235
+" hi StatusLine ctermbg=253 ctermfg=235
 
 " Tabs are 4 spaces
-set tabstop=4 
-set softtabstop=0 
-set expandtab 
-set shiftwidth=4 
+set tabstop=4
+set softtabstop=0
+set expandtab
+set shiftwidth=4
 set smarttab
 
 " Allow hidden buffers
@@ -34,6 +34,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'pangloss/vim-javascript'
+Plug 'w0rp/ale'
+Plug 'vim-airline/vim-airline'
 
 " ycm with additional installation function adding js support
 function! BuildYCM(info)
@@ -43,7 +45,7 @@ function! BuildYCM(info)
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
     " !./install.py --tern-completer
-    !./install.py 
+    !./install.py
   endif
 endfunction
 
@@ -63,6 +65,17 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+
+" Ale Error and warning signs.
+let g:ale_sign_error = '!'
+let g:ale_sign_warning = '*'
+
+" Ale clear highlighting
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+
+" Enable integration with airline.
+" let g:airline#extensions#ale#enabled = 1
 
 " turn syntax on
 syntax on
@@ -90,11 +103,11 @@ hi Pmenu ctermfg=16 ctermbg=244
 hi PmenuSel ctermfg=253 ctermbg=238
 
 " Dark grey for the split window line
-hi VertSplit ctermfg=235 ctermbg=235 
+hi VertSplit ctermfg=235 ctermbg=235
 
 " Folding colours
-hi Folded ctermfg=253 ctermbg=16 
-hi FoldColumn ctermfg=253 ctermbg=16 
+hi Folded ctermfg=253 ctermbg=16
+hi FoldColumn ctermfg=253 ctermbg=16
 
 " vim-javascript: Set folding for javascript to on. May have performance
 " issues.
@@ -105,7 +118,7 @@ augroup END
 
 set foldlevel=999
 
-" gitgutter update time 
+" gitgutter update time
 set updatetime=250
 
 " gitgutter colours
