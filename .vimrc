@@ -33,6 +33,7 @@ call plug#begin('~/.vim/plugged')
 " list of plugins
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
+Plug 'pangloss/vim-javascript'
 
 " ycm with additional installation function adding js support
 function! BuildYCM(info)
@@ -63,8 +64,13 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
+" turn syntax on
+syntax on
+
 " Set colour mode to 8 colours - removes bold.
 set t_Co=8 t_md=
+
+" Set known groups to light grey foreground and black background
 hi Normal ctermfg=253 ctermbg=16
 hi Constant ctermfg=253 ctermbg=16
 hi Special ctermfg=253 ctermbg=16
@@ -73,16 +79,31 @@ hi Statement ctermfg=253 ctermbg=16
 hi PreProc ctermfg=253 ctermbg=16
 hi Type ctermfg=253 ctermbg=16
 hi Underlined ctermfg=253 ctermbg=16
+hi Error ctermfg=253
 
+" Make comments and todos a darker grey
 hi Comment ctermfg=244 ctermbg=16
 hi Todo ctermfg=244 ctermbg=16
 
-hi Error ctermfg=253
-
+" Colours for the completion menu
 hi Pmenu ctermfg=16 ctermbg=244
 hi PmenuSel ctermfg=253 ctermbg=238
 
+" Dark grey for the split window line
 hi VertSplit ctermfg=235 ctermbg=235 
+
+" Folding colours
+hi Folded ctermfg=253 ctermbg=16 
+hi FoldColumn ctermfg=253 ctermbg=16 
+
+" vim-javascript: Set folding for javascript to on. May have performance
+" issues.
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
+
+set foldlevel=999
 
 " gitgutter update time 
 set updatetime=250
