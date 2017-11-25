@@ -36,6 +36,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'pangloss/vim-javascript'
 Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " ycm with additional installation function adding js support
 function! BuildYCM(info)
@@ -53,6 +54,19 @@ Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 " initialise plugin system
 call plug#end()
+
+" A nice monochrome statusbar
+let g:airline_theme='minimalist'
+
+" Updated the standard filename to be the file path
+let g:airline_section_c = '%<%F %m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
+
+" Removed the filetype section. On the whole useless for me, most files I work
+" with have extensions
+let g:airline_section_x = ''
+
+" Simplified and shortened the line and column information
+let g:airline_section_z = '%3p%% %4l%#__accent_bold#/%L :%3v'
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
