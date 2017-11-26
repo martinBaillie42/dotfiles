@@ -69,8 +69,8 @@ let g:airline_section_x = ''
 " Simplified and shortened the line and column information.
 " let g:airline_section_z = '%3p%% %4l%#__accent_bold#/%L :%3v'
 
-let g:airline_section_z = '%{airline#util#wrap(airline#extensions#hunks#get_hunks(),0)}%{airline#util#wrap(airline#extensions#branch#get_head(),0)}0'
-let g:airline_section_b = '%3p%% %4l%#__accent_bold#/%L :%3v'
+" let g:airline_section_z = '%{airline#util#wrap(airline#extensions#hunks#get_hunks(),0)}%{airline#util#wrap(airline#extensions#branch#get_head(),0)}0'
+" let g:airline_section_b = '%3p%% %4l%#__accent_bold#/%L :%3v'
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
