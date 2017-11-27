@@ -203,5 +203,5 @@ endtry
 " places
 set wildmode=longest:full
 
-" Set CWD to that of current file (or is it buffer?)
-set autochdir
+" Remap entering normal mode in terminal to escape
+tnoremap <Esc> <C-\><C-n>
