@@ -61,6 +61,6 @@ if [ $USER == "martin.baillie" ]; then
   alias cdi='cd ~/WebstormProjects/im2x-client/IM2X-Shell/'
   
   alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs -nw"
+  export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 elif [ $USER == "martin" ]; then
-
 fi
