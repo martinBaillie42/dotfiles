@@ -52,6 +52,9 @@ PROMPT='%n@%m %~ $(git_super_status)${NEWLINE}%# '
 # TODO ls -AFl in a variable
 alias lsd='ls -AFl | grep "^d"; ls -AFl | grep "^-"; ls -AFl | grep "^l"'
 
+alias vim='nvim'
+alias oldvim='vim'
+
 if [ $USER == "martin.baillie" ]; then
   # for adb
   export ANDROID_HOME=/Users/${USER}/Library/Android/sdk
