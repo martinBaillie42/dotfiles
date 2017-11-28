@@ -36,6 +36,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 " ycm with additional installation function adding js support
 function! BuildYCM(info)
@@ -66,6 +68,8 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
+" Add git to statusline
+" Add total Ale errors to status line.
 " Ale Error and warning signs.
 let g:ale_sign_error = '!'
 let g:ale_sign_warning = '*'
