@@ -38,6 +38,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'ludovicchabant/vim-gutentags'
 
 " ycm with additional installation function adding js support
 function! BuildYCM(info)
@@ -55,6 +57,30 @@ Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 " initialise plugin system
 call plug#end()
+
+let g:gutentags_ctags_exclude = [
+    \ 'platforms',
+    \ 'www',
+    \ 'www-temp',
+    \ '.git*',
+    \ '.tern-project',
+    \ 'doc',
+    \ '*.html',
+    \ '*.less',
+    \ '*.css',
+    \ '*.db',
+    \ '*sublime-project',
+    \ 'Keystore',
+    \ '.DS_Store',
+    \ '*.swp',
+    \ 'node_modules',
+    \ 'plugins',
+    \ 'typings',
+    \ 'bower_components'
+    \]
+
+" Remap open/close Nerdtree
+map <C-n> :NERDTreeToggle<CR>
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
