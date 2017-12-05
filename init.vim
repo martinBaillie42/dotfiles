@@ -11,6 +11,15 @@ set statusline=%l\:%c\ %L%=\ %M\ %<%F
 hi StatusLineNC ctermbg=244 ctermfg=235
 hi StatusLine ctermbg=253 ctermfg=235
 
+" filetype detection and indentation
+filetype plugin indent on
+
+" turn syntax on
+syntax on
+
+" Remove the scratch preview window from completion hints.
+set completeopt-=preview
+
 " Tabs are 4 spaces
 set tabstop=4
 set softtabstop=0
@@ -26,7 +35,6 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-
 " specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
@@ -39,45 +47,21 @@ Plug 'leafgarland/typescript-vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'ludovicchabant/vim-gutentags'
-
-" ycm with additional installation function adding js support
-function! BuildYCM(info)
-  " info is a dictionary with 3 fields
-  " - name:   name of the plugin
-  " - status: 'installed', 'updated', or 'unchanged'
-  " - force:  set on PlugInstall! or PlugUpdate!
-  if a:info.status == 'installed' || a:info.force
-    " !./install.py --tern-completer
-    !./install.py
-  endif
-endfunction
-
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'carlitux/deoplete-ternjs'
+    " , { 'do': 'npm install -g tern' }
+Plug 'mhartington/nvim-typescript'
 
 " initialise plugin system
 call plug#end()
 
-let g:gutentags_ctags_exclude = [
-    \ 'platforms',
-    \ 'www',
-    \ 'www-temp',
-    \ '.git*',
-    \ '.tern-project',
-    \ 'doc',
-    \ '*.html',
-    \ '*.less',
-    \ '*.css',
-    \ '*.db',
-    \ '*sublime-project',
-    \ 'Keystore',
-    \ '.DS_Store',
-    \ '*.swp',
-    \ 'node_modules',
-    \ 'plugins',
-    \ 'typings',
-    \ 'bower_components'
-    \]
+" Only use tslint for typescript
+let g:ale_linters = {'typescript': ['tslint']}
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#ternjs#tern_bin = '~/.nvm/versions/node/v4.8.2/bin/tern'
+let g:deoplete#enable_refresh_always = 1
+let g:deoplete#auto_complete_delay = 0
 
 " Remap open/close Nerdtree
 map <C-n> :NERDTreeToggle<CR>
@@ -103,12 +87,6 @@ let g:ale_sign_warning = '*'
 " Ale clear highlighting
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
-
-" Only use tslint for typescript
-let g:ale_linters = {'typescript': ['tslint']}
-
-" turn syntax on
-syntax on
 
 " Set colour mode to 8 colours - removes bold.
 set t_Co=8 t_md=
@@ -183,9 +161,6 @@ let mapleader=" "
 
 " Set : commands history
 set history=500
-
-" filetype detection and indentation
-filetype plugin indent on
 
 " Fast saving
 nmap <leader>w :w!<cr>
