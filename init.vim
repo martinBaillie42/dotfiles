@@ -51,9 +51,13 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs'
     " , { 'do': 'npm install -g tern' }
 Plug 'mhartington/nvim-typescript'
+Plug 'airblade/vim-rooter'
 
 " initialise plugin system
 call plug#end()
+
+" Add node_modules then .git then .git/ to the root detection for vim-rooter
+let g:rooter_patterns = ['node_modules/', '.git', '.git/']
 
 " Only use tslint for typescript
 let g:ale_linters = {'typescript': ['tslint']}
@@ -170,7 +174,12 @@ set so=7
 
 " turn on WiLdmenu. This enables vim command completion
 set wildmenu
-set wildignore=*~,*/.git/*,*/.DS_Store
+set wildignore=*~,*/.git/*,*/.DS_Store,*/IM2X-Shell/www/*,*/IM2X-Shell/www-temp/*
+
+" Completion mode that is used for the character specified with 'wildchar'
+" As far as I can tell used for filename tab completion. May be used in other
+" places
+set wildmode=longest:full
 
 " Configure backspace so it behaves nicely
 set backspace=eol,start,indent
@@ -209,11 +218,6 @@ try
     set undofile
 catch
 endtry
-
-" Completion mode that is used for the character specified with 'wildchar'
-" As far as I can tell used for filename tab completion. May be used in other
-" places
-set wildmode=longest:full
 
 " Remap entering normal mode in terminal to escape
 tnoremap <Esc> <C-\><C-n>
