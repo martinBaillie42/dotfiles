@@ -41,16 +41,10 @@ call plug#begin('~/.vim/plugged')
 " list of plugins
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
-Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs'
-    " , { 'do': 'npm install -g tern' }
-Plug 'mhartington/nvim-typescript'
 Plug 'airblade/vim-rooter'
 
 " initialise plugin system
@@ -58,14 +52,6 @@ call plug#end()
 
 " Add node_modules then .git then .git/ to the root detection for vim-rooter
 let g:rooter_patterns = ['node_modules/', '.git', '.git/']
-
-" Only use tslint for typescript
-let g:ale_linters = {'typescript': ['tslint']}
-
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#ternjs#tern_bin = '~/.nvm/versions/node/v4.8.2/bin/tern'
-let g:deoplete#enable_refresh_always = 1
-let g:deoplete#auto_complete_delay = 0
 
 " Remap open/close Nerdtree
 map <C-n> :NERDTreeToggle<CR>
@@ -82,76 +68,8 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" Add git to statusline
-" Add total Ale errors to status line.
-" Ale Error and warning signs.
-let g:ale_sign_error = '!'
-let g:ale_sign_warning = '*'
-
-" Ale clear highlighting
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-
-" Set colour mode to 8 colours - removes bold.
-set t_Co=8 t_md=
-
-" Set known groups to light grey foreground and black background
-hi Normal ctermfg=253 ctermbg=16
-hi Constant ctermfg=253 ctermbg=16
-hi Special ctermfg=253 ctermbg=16
-hi Identifier ctermfg=253 ctermbg=16
-hi Statement ctermfg=253 ctermbg=16
-hi PreProc ctermfg=253 ctermbg=16
-hi Type ctermfg=253 ctermbg=16
-hi Underlined ctermfg=253 ctermbg=16
-hi Error ctermfg=253
-
-" Set ALE highlights to white background black foreground
-hi ALEError ctermfg=16 ctermbg=253
-hi ALEWarning ctermfg=16 ctermbg=253
-hi ALEInfo ctermfg=16 ctermbg=253
-hi ALEStyleError ctermfg=16 ctermbg=253
-hi ALEStyleWarning ctermfg=16 ctermbg=253
-
-" Make comments and todos a darker grey
-hi Comment ctermfg=244 ctermbg=16
-hi Todo ctermfg=244 ctermbg=16
-
-" Colours for the completion menu
-hi Pmenu ctermfg=16 ctermbg=244
-hi PmenuSel ctermfg=253 ctermbg=238
-
-" Dark grey for the split window line
-hi VertSplit ctermfg=235 ctermbg=235
-
-" Folding colours
-hi Folded ctermfg=253 ctermbg=16
-hi FoldColumn ctermfg=253 ctermbg=16
-
-" vim-javascript: Set folding for javascript to on. May have performance
-" issues.
-augroup javascript_folding
-    au!
-    au FileType javascript setlocal foldmethod=syntax
-augroup END
-
-" Set folding for typescript to on. May have performance
-" issues.
-augroup typescript_folding
-    au!
-    au FileType typescript setlocal foldmethod=syntax
-augroup END
-
-set foldlevel=999
-
 " gitgutter update time
 set updatetime=250
-
-" gitgutter colours
-highlight link GitGutterChange Normal
-highlight link GitGutterAdd Normal
-highlight link GitGutterDelete Normal
-highlight link GitGutterChangeDelete Normal
 
 " permanent gitgutter
 if exists('&signcolumn')  " Vim 7.4.2201
