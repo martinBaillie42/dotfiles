@@ -60,10 +60,14 @@ if [ $USER == "martin.baillie" ]; then
   export ANDROID_HOME=/Users/${USER}/Library/Android/sdk
   export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
 
+  GRADLE_HOME=/usr/local/gradle/gradle-3.2
+  export PATH=$GRADLE_HOME/bin:$PATH  
+
   # set current directory to IM2X-SHELL
-  alias cdi='cd ~/WebstormProjects/im2x-client/IM2X-Shell/'
-  
+  alias cdi='cd ~/code/im2x-client/IM2X-Shell/'
+
   alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs -nw"
   export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 elif [ $USER == "martin" ]; then
 fi
+
