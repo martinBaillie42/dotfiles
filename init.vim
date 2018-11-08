@@ -7,10 +7,6 @@ set laststatus=2
 " Configure statusline
 set statusline=%l\:%c\ %L%=\ %M\ %<%F
 
-" statusline colours
-hi StatusLineNC ctermbg=244 ctermfg=235
-hi StatusLine ctermbg=253 ctermfg=235
-
 " filetype detection and indentation
 filetype plugin indent on
 
