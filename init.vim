@@ -10,11 +10,10 @@ set statusline=%l\:%c\ %L%=\ %M\ %<%F
 " filetype detection and indentation
 filetype plugin indent on
 
-" turn syntax on
-syntax on
-
-" Remove the scratch preview window from completion hints.
-set completeopt-=preview
+" enable syntax and add solarized
+syntax enable
+set background=light
+colorscheme solarized
 
 " Tabs are 4 spaces
 set tabstop=4
@@ -31,48 +30,6 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-" specify a directory for plugins
-call plug#begin('~/.vim/plugged')
-
-" list of plugins
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdcommenter'
-Plug 'pangloss/vim-javascript'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'airblade/vim-rooter'
-
-" initialise plugin system
-call plug#end()
-
-" Add node_modules then .git then .git/ to the root detection for vim-rooter
-let g:rooter_patterns = ['node_modules/', '.git', '.git/']
-
-" Remap open/close Nerdtree
-map <C-n> :NERDTreeToggle<CR>
-
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-
-" gitgutter update time
-set updatetime=250
-
-" permanent gitgutter
-if exists('&signcolumn')  " Vim 7.4.2201
-  set signcolumn=yes
-else
-  let g:gitgutter_sign_column_always = 1
-endif
 
 " Set leader to space
 let mapleader=" "
@@ -86,7 +43,7 @@ nmap <leader>w :w!<cr>
 " Start scrolling 7 lines before top/bottom of screen
 set so=7
 
-" turn on WiLdmenu. This enables vim command completion
+" turn on Wildmenu. This enables vim command completion
 set wildmenu
 set wildignore=*~,*/.git/*,*/.DS_Store,*/IM2X-Shell/www/*,*/IM2X-Shell/www-temp/*
 
